@@ -1,0 +1,80 @@
+import java.util.Scanner;
+
+public class Calculadora {
+
+    // Atributos
+    private double numero1;
+    private double numero2;
+
+    // Constructor
+    public Calculadora(double numero1, double numero2) {
+        this.numero1 = numero1;
+        this.numero2 = numero2;
+    }
+    // Suma
+    public double sumar() {
+        return numero1 + numero2;
+    }
+    // Resta
+    public double restar() {
+        return numero1 - numero2;
+    }
+    // Multiplicación
+    public double multiplicar() {
+        return numero1 * numero2;
+    }
+    // División
+    public double dividir() {
+        if (numero2 != 0) {
+            return numero1 / numero2;
+        } else {
+            System.out.println("Error: División por cero no permitida.");
+            return Double.NaN; // Retorna NaN si se intenta dividir por cero
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+
+        System.out.print("Ingrese el primer valor: ");
+        double numero1 = scanner.nextDouble();
+        System.out.print("Ingrese el segundo valor: ");
+        double numero2 = scanner.nextDouble();
+
+        // instancia
+        Calculadora calculadora = new Calculadora(numero1, numero2);
+
+        System.out.println("Seleccione la operación que desea realizar:");
+        System.out.println("1. Sumar");
+        System.out.println("2. Restar");
+        System.out.println("3. Multiplicar");
+        System.out.println("4. Dividir");
+
+
+        int operacion = scanner.nextInt();
+
+        switch (operacion) {
+            case 1:
+                System.out.println("El resultado de la suma es: " + calculadora.sumar());
+                break;
+            case 2:
+                System.out.println("El resultado de la resta es: " + calculadora.restar());
+                break;
+            case 3:
+                System.out.println("El resultado de la multiplicación es: " + calculadora.multiplicar());
+                break;
+            case 4:
+                double resultado = calculadora.dividir();
+                if (!Double.isNaN(resultado)) {
+                    System.out.println("El resultado de la división es: " + resultado);
+                }
+                break;
+            default:
+                System.out.println("Opción no válida. Por favor, seleccione una opción entre 1 y 4.");
+                break;
+        }
+
+        scanner.close();
+    }
+}
